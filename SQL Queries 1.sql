@@ -1,7 +1,7 @@
 -- SQL Queries 1
 -- Aaron Kippins
 -- Question 1 
-SELECT cid, name, city, discount FROM customers
+SELECT * FROM customers
 -- Question 2
 SELECT name, city FROM agents
 WHERE name = 'Smith'
