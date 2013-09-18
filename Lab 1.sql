@@ -114,6 +114,13 @@ insert into grades(studentid, subjectid, teacherid, grade)
 
 --select * from grades;
 
+--Questions
+--All students in alpha order
+--Names of students who have had Adams for any class
+--Names of teachers who have taught Biology
+--Names of teachers who do not teach
+--Names of students that have taken no classes
+--Names of students in the same class, and the class name
 
 --Question 1
 --select studentname from students
