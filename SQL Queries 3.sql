@@ -43,10 +43,11 @@ full outer join agents a on c.city = a.city
 where c.city = a.city
 
 --Question 9 *******
-select p.name, p.city
-from customers c
-full outer join products p on c.city = p.city
-where p.city in (select count(city) from products p)
+select c.city, count(p.city)
+from products p, customers c 
+where c.city = p.city
+group by p.city
+
 
 --Question 10 ******
 select p.name, p.city
@@ -71,10 +72,12 @@ from customers c, orders o
 where c.cid = o.cid
 order by o.dollars desc
 
---Question 14 *********
+--Question 14 
 select c.name, coalesce(sum(o.dollars), 0.00)
 from orders o
 left outer join customers c on c.cid = o.cid
+group by c.name	
+order by c.name
 
 --Question 15 
 select c.name, p.name, a.name
@@ -86,7 +89,7 @@ select o.pid, o.qty * p.priceusd, o.dollars
 from orders o, products p
 where o.pid = p.pid
 
---Question 17 *********
-select
+--Question 17 
+select 
 from
-where
+where 
