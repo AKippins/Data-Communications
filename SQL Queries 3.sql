@@ -2,21 +2,32 @@
 select city from agents a
 where a.aid in(select o.aid from orders o
 	where o.cid = 'c002' )
+	
 --Question 2
 select a.city
 from agents a, orders o
 where a.aid=o.aid and o.cid = 'c002'
 
 --Question 3
-select pid from orders 
-where aid in(select aid from orders
-	where cid in(select cid from customers
-		where city = 'Kyoto'))
+select o.pid
+from orders o
+where o.aid in(
+	select o.aid
+	from orders o 
+	where o.cid in(
+		select c.cid
+		from customers c 
+		where c.city = 'Kyoto'))
 		
 --Question 4
-select o.pid
-from orders o, customers c
-where o.cid = c.cid and c.city = 'Kyoto'
+select o2.pid
+from orders o
+full outer join customers c on o.cid = c.cid and c.city = 'Kyoto'
+full outer join orders o2 on o.aid = o2.aid
+full outer join products p on o.pid = p.pid
+where c.city = 'Kyoto'
+
+
 
 --Question 5
 select distinct c.name
@@ -28,7 +39,6 @@ select *
 from customers c 
 left join orders o on c.cid = o.cid
 where ordno is null
-
 
 --Question 7
 select c.name, a.name
@@ -52,6 +62,7 @@ where c.city in(
 	order by count(p.city) asc
 	limit 1
 )
+
 
 --Question 10 
 select c.name, c.city
