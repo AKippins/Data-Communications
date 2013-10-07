@@ -42,23 +42,38 @@ from customers c
 full outer join agents a on c.city = a.city
 where c.city = a.city
 
---Question 9 *******
-select c.city, count(p.city)
-from products p, customers c 
-where c.city = p.city
-group by p.city
-
-
---Question 10 ******
-select p.name, p.city
+--Question 9 
+select c.name, c.city
 from customers c
-full outer join products p on c.city = p.city
-where p.quantity in (select max(quantity) from products p)
+where c.city in(
+	select p.city
+	from products p
+	group by p.city
+	order by count(p.city) asc
+	limit 1
+)
 
---Question 11 *****
-select *
-from customers c 
-full outer join products p on c.city = p.city
+--Question 10 
+select c.name, c.city
+from customers c
+where c.city in(
+	select p.city
+	from products p
+	group by p.city
+	order by count(p.city) desc
+	limit 1
+)
+
+--Question 11 
+select c.name, c.city
+from customers c
+where c.city in(
+	select p.city
+	from products p
+	group by p.city
+	order by count(p.city) asc
+	limit 2
+)
 
 --Question 12
 select * 
@@ -87,9 +102,9 @@ where a.aid = o.aid and c.cid = o.cid and p.pid = o.pid and a.city = 'New York'
 --Question 16
 select o.pid, o.qty * p.priceusd, o.dollars
 from orders o, products p
-where o.pid = p.pid
+where o.pid = p.pid 
 
 --Question 17 
-select 
-from
-where 
+update orders 
+set dollars = '999.99'
+where dollars = '500.00'
